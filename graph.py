@@ -1,6 +1,6 @@
 from graphics import *
-import numpy as np
-class Board:
+
+class DrawBoard:
     """
     Drawing the board given N
     """
@@ -42,16 +42,16 @@ class Board:
         for i in range (self.M): #3
             # Columns
             for j in range (self.N):    #4
-                if board[self.M-i-1][j].state == 0:
+                if board[self.M-i-1][j] == 0:
                     # normal blcok
                     color = self.norm_color
-                elif board[self.M-i-1][j].state == 1:
+                elif board[self.M-i-1][j] == 1:
                     # goal
                     color = self.goal_color
-                elif board[self.M-i-1][j].state == -1:
+                elif board[self.M-i-1][j] == -1:
                     # exit
                     color = self.exit_color
-                elif board[self.M-i-1][j].state == 2:
+                elif board[self.M-i-1][j] == 2:
                     # obstacle
                     color = self.obstacle_color
                 
