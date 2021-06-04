@@ -4,7 +4,7 @@ class StateBoard:
     """
     Stating board info
     """
-    def __init__(self, N, M, agent_i=0, agent_j=0, void_cost=-0.04, goal_cost=5, exit_cost=-5, state=0):
+    def __init__(self, N, M, agent_i=0, agent_j=0, void_cost=-0.04, goal_cost=1, exit_cost=-1, state=0):
         self.N = N
         self.M = M
         self.state_value = {}
@@ -85,3 +85,7 @@ class StateBoard:
 
     def assing_policy(self, policy_board):
         self.policy = policy_board
+
+    def get_state_value(self,i,j):
+        state = self.board[i][j]
+        return self.state_value[state]
