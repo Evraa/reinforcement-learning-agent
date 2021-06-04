@@ -5,8 +5,8 @@ class DrawBoard:
     Drawing the board given N
     """
     def __init__(self, N,M):
-        self.N = N
-        self.M = M
+        self.N = M
+        self.M = N
         self.norm_color = color_rgb(97, 157, 246)         #0
         self.goal_color = color_rgb(97, 246, 142)         #1
         self.exit_color = color_rgb(246, 97, 97)          #-1
@@ -59,10 +59,3 @@ class DrawBoard:
 
         self.window.getMouse()
         self.window.close()
-
-
-
-# rows, cols = len(board),len(board[0])
-
-# b = Board(cols,rows)
-# b.draw_board(board)
