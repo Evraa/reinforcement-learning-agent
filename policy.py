@@ -71,3 +71,9 @@ def get_policy(board, policy="goal"):
 
     return policy_board
 
+def get_const_policy():
+    return [
+        ["r","r","r","same"],
+        ["t","same","t","same"],
+        ["t","l","l","l"]
+    ]

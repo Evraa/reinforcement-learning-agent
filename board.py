@@ -13,7 +13,7 @@ class StateBoard:
         self.state_value[-1] = exit_cost
         self.state_value[2] = 0
         self.agent = [agent_i, agent_j]
-
+        self.policy = []
         self.board = []
         for _ in range (N):
             row = []
@@ -83,3 +83,5 @@ class StateBoard:
                     exits.append(exit)
         return exits
 
+    def assing_policy(self, policy_board):
+        self.policy = policy_board
