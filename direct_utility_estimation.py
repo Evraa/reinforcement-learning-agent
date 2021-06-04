@@ -35,8 +35,8 @@ def move(policy_board, valid_moves,x, y, eps):
         #what is policy?
         if policy_board[x][y] == "r" and [x, y+1] in valid_moves:
             return [x, y+1]
-        if policy_board[x][y] == "l" and [x, y+1] in valid_moves:
-            return [x, y+1]
+        if policy_board[x][y] == "l" and [x, y-1] in valid_moves:
+            return [x, y-1]
         if policy_board[x][y] == "t" and [x-1, y] in valid_moves:
             return [x-1, y]
         if policy_board[x][y] == "b" and [x+1, y] in valid_moves:
@@ -57,7 +57,7 @@ def reward_to_go(board,policy_board, epochs, eps=0):
     # tabular
     results = []
         
-    for _ in range (epochs):
+    for ep in range (epochs):
         # assign position for agent
         x,y = random_agent_start(board,N,M)
         # store one path record
