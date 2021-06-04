@@ -1,8 +1,5 @@
 import random
 
-
-
-
 def random_agent_start(board,N,M):
     x = int(random.randint(0,N-1))
     y = int(random.randint(0,M-1))

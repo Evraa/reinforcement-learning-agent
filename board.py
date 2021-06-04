@@ -13,7 +13,7 @@ class StateBoard:
         self.state_value[-1] = exit_cost
         self.state_value[2] = 0
         self.agent = [agent_i, agent_j]
-        self.policy = []
+        self.policy = None
         self.board = []
         for _ in range (N):
             row = []
@@ -89,3 +89,6 @@ class StateBoard:
     def get_state_value(self,i,j):
         state = self.board[i][j]
         return self.state_value[state]
+
+    def get_policy_value(self,i,j):
+        return self.policy[i][j]

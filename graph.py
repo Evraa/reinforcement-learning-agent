@@ -11,6 +11,7 @@ class DrawBoard:
         self.goal_color = color_rgb(97, 246, 142)         #1
         self.exit_color = color_rgb(246, 97, 97)          #-1
         self.obstacle_color = color_rgb(110, 110, 110)    #2
+        self.arrow_color = color_rgb(0,0,0)  
         self.agent_color = color_rgb(240,163, 47)         
     
 
@@ -34,28 +35,55 @@ class DrawBoard:
         circle_draw.setOutline("yellow")
         circle_draw.draw(self.window)
     
+    def line(self, center_x, center_y, color, direction):
+        if direction == "r" or direction == "l":
+            point_1 = Point(center_x-5, center_y)
+            point_2 = Point(center_x+5, center_y)
+            line = Line(point_1, point_2)
+            line.setFill(self.arrow_color)
+            if direction == "r":
+                line.setArrow("last")
+            else:
+                line.setArrow("first")
+            line.draw(self.window)
 
-    def draw_board(self, board):
+        if direction == "t" or direction == "b" :
+            point_1 = Point(center_x, center_y-5)
+            point_2 = Point(center_x, center_y+5)
+            line = Line(point_1, point_2)
+            if direction == "t":
+                line.setArrow("last")
+            else:
+                line.setArrow("first")
+            line.setFill(self.arrow_color)
+            line.draw(self.window)
+        
+
+    def draw_board(self, sb):
         self.set_window()
         # Draw squares
         # Rows
         for i in range (self.M): #3
             # Columns
             for j in range (self.N):    #4
-                if board[self.M-i-1][j] == 0:
+                policy_flag = False
+                if sb.board[self.M-i-1][j] == 0:
                     # normal blcok
                     color = self.norm_color
-                elif board[self.M-i-1][j] == 1:
+                    policy_flag = True
+                elif sb.board[self.M-i-1][j] == 1:
                     # goal
                     color = self.goal_color
-                elif board[self.M-i-1][j] == -1:
+                elif sb.board[self.M-i-1][j] == -1:
                     # exit
                     color = self.exit_color
-                elif board[self.M-i-1][j] == 2:
+                elif sb.board[self.M-i-1][j] == 2:
                     # obstacle
                     color = self.obstacle_color
                 
                 self.rect(j*30, i*30, color)
+                if policy_flag: # draw policy
+                    self.line((j*30)+15, (i*30)+15, self.arrow_color, sb.get_policy_value(self.M-i-1,j))
 
         self.window.getMouse()
         self.window.close()

@@ -14,6 +14,7 @@ def direction(i,j,x,y):
     if tot == 0:
         # same point
         return 'same'
+
     if abs(x-i) > abs(y-j):
         if abs(y-j)/tot >= rand:
             # surprisingly favourite y
@@ -64,9 +65,12 @@ def get_policy(board, policy="goal"):
             d = direction(i,j,avg_point[0],avg_point[1])
             if policy =="exit": 
                 d = invert_policy(d)
-            print (i,j)
-            print (d)
-            policy_row.append(d)
+            
+            if board.board[i][j]!=0:
+                policy_row.append("same")
+            else:
+                policy_row.append(d)
+                
         policy_board.append(policy_row)
 
     return policy_board
