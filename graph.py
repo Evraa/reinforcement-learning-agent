@@ -93,10 +93,11 @@ class DrawBoard:
         self.window.getMouse()
         # self.window.close()
 
-    def draw_board_text(self, sb, uts):
+    def draw_board_text(self, sb, uts, fa=False):
         self.set_window()
         # Draw squares
         # Rows
+        k = 0
         for i in range (self.M): #3
             # Columns
             for j in range (self.N):    #4
@@ -117,7 +118,11 @@ class DrawBoard:
                 
                 self.rect(j*30, i*30, color)
                 if text_flag: # draw policy
-                    ut = format( uts[self.M-i-1][j] , '.2f')
+                    if fa:
+                        ut = format( uts[k] , '.2f')
+                        k += 1
+                    else:
+                        ut = format( uts[self.M-i-1][j] , '.2f')
                     self.text((j*30)+15, (i*30)+15, self.arrow_color, ut)
 
         self.window.getMouse()
