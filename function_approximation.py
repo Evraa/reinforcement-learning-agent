@@ -73,6 +73,40 @@ def init_weights(dim):
     return ws
 
 
+def loss(actual, predicted):
+    # no need to compute the loss
+    return 0
+
 
 def forward(features, ws):
-    pass
+    # estimate
+    predictions = []
+    for exm in features:
+        pred = np.multiply(exm, ws)
+        predictions.append(pred)
+    return predictions
+
+def update_weights(sb, ws, lr, actual_values, predictions, features):
+    N,M = sb.get_dim()
+    board = sb.board()
+    k = 0
+    for i in range(N):
+        for j in range(M):
+            if board[i][j] == 0:
+                for l,w in enumerate(ws):
+                    w += lr * (actual_values[k] - predictions[k]) * features[k][l]
+                    k += 1
+    return ws
+
+
+def run(epochs, sb):
+    features = compute_features(sb)
+    ws = init_weights(3)
+    actual_values = run_trials(sb)
+    lr = 0.1
+    for epoch in range(epochs):
+        predictions = forward(features, ws)
+        ws = update_weights(sb, ws, lr, actual_values, predictions, features)
+    
+    return ws
+
