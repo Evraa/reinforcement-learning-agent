@@ -15,8 +15,8 @@ class DrawBoard:
         self.agent_color = color_rgb(240,163, 47)         
     
 
-    def set_window(self):
-        win = GraphWin('board',720,720)
+    def set_window(self,title="board"):
+        win = GraphWin(title,720,720)
         win.setCoords(0, 0, self.N*30, self.M*30)
         self.window = win
 
@@ -94,7 +94,10 @@ class DrawBoard:
         # self.window.close()
 
     def draw_board_text(self, sb, uts, fa=False):
-        self.set_window()
+        if fa:
+            self.set_window("Function Approximation")
+        else:
+            self.set_window("Tabular")
         # Draw squares
         # Rows
         k = 0

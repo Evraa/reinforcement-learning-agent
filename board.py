@@ -22,37 +22,42 @@ class StateBoard:
 
         
 
-    def assign_goal(self, i, j, state=1):
+    def assign_goal(self, i, j):
         assert i<self.N and j<self.M, "Out of bound assignment!"
+        assert self.board[i][j] == 0, "This is not a valid position"
         try:
-            self.board[i][j] = state
+            self.board[i][j] = 1
         except:
             print ("Error: cant assign goal state")
     
-    def assign_exit(self, i, j, state=-1):
+    def assign_exit(self, i, j):
         assert i<self.N and j<self.M, "Out of bound assignment!"
+        assert self.board[i][j] == 0, "This is not a valid position"
         try:
-            self.board[i][j] = state
+            self.board[i][j] = -1
         except:
             print ("Error: cant assign exit state")
 
-    def assign_obstacle(self, i, j, state=2):
+    def assign_obstacle(self, i, j, ):
         assert i<self.N and j<self.M, "Out of bound assignment!"
+        assert self.board[i][j] == 0, "This is not a valid position"
         try:
-            self.board[i][j] = state
+            self.board[i][j] = 2
         except:
             print ("Error: cant assign obstacle state")
         
     
     def print_board(self):
-        print (self.board)
-        print ("State vlaues:")
         temp_state = []
         for i in range(self.N):
             temp_row = []
-            for j in range (self.M): temp_row.append(self.state_value[self.board[i][j]])
+            print (self.board[i])
+            for j in range (self.M): 
+                temp_row.append(self.state_value[self.board[i][j]])
             temp_state.append(temp_row)
-        print (temp_state)
+        print ("State vlaues:")
+        for i in range(self.N):
+            print (temp_state[i])
 
 
     def get_dim(self):
