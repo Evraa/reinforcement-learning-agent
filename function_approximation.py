@@ -1,5 +1,6 @@
 import numpy as np
 import math
+import random
 
 
 
@@ -26,3 +27,10 @@ def compute_features(sb, add_euc=False):
                 else:
                     features.append([1,i,j])
     return features
+
+def init_weights(dim):
+    ws = []
+    for i in range (dim):
+        ws.append(random.random())
+    return ws
+
