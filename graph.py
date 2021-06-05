@@ -126,4 +126,4 @@ class DrawBoard:
                     self.text((j*30)+15, (i*30)+15, self.arrow_color, ut)
 
         self.window.getMouse()
-        self.window.close()
+        # self.window.close()
