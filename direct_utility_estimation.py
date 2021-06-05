@@ -1,6 +1,9 @@
 import random
 
 def random_agent_start(board,N,M):
+    '''
+        Set a random starting point.
+    '''
     x = int(random.randint(0,N-1))
     y = int(random.randint(0,M-1))
 
@@ -11,6 +14,9 @@ def random_agent_start(board,N,M):
 
 
 def find_neighbours(board, x, y):
+    '''
+        find all VALID neighbors to the current point.
+    '''
     top = [x-1, y]
     bottom = [x+1, y]
     left = [x, y-1]
@@ -29,6 +35,15 @@ def find_neighbours(board, x, y):
     return valid_moves
         
 def move(policy_board, valid_moves,x, y, eps):
+    '''
+        Pick a position to move into.
+
+        eps: defines whether or not to follow the policy.
+
+        if no options are valid, pick randomly.
+
+        we must find a way.
+    '''
     # random epsilon (eps-greedy)
     rand = random.random() #[0,1)
     if rand > eps: #80% chance
@@ -51,6 +66,9 @@ def move(policy_board, valid_moves,x, y, eps):
 
 def reward_to_go(board,policy_board, epochs, eps=0):
     '''
+        runs for epochs of times
+
+        for each one runs until hits a termination point (goal/exit)
     '''
     # get board dimenstions
     N, M = board.get_dim()
@@ -80,6 +98,10 @@ def reward_to_go(board,policy_board, epochs, eps=0):
     return results
 
 def interpret_results(results, sb):
+    '''
+        From all the results/trials found above, we calculate the direct average estimated value of each cell
+            based on its given policy.
+    '''
     # get board dimenstions
     N, M = sb.get_dim()
     utilities = []
